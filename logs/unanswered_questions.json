@@ -1,0 +1,38 @@
+[
+    {
+        "timestamp": "2026-09-30T16:47:45.334156",
+        "question": "Amitabh Bachchan ki details batao",
+        "response": "Mujhe Amitabh Bachchan ke details nahi mil rahe hain. Shayad unka naam school database mein nahi hai. Kya aap kisi aur student ke baare mein jaan na chahte hain?",
+        "reason": "Tool returned error or not found"
+    },
+    {
+        "timestamp": "2026-09-30T16:55:01.459367",
+        "question": "staff ka id password kaise create kare",
+        "response": "Mujhe staff ka ID aur password create karne ka process nahi mila. Lekin aap school ke ERP system ke admin panel mein jaakar \"Staff Management\" section mein check kar sakte hain. Wahan aapko staff ka ID aur password create karne ka option mil jayega. Agar aapko koi specific step chahiye ho toh please batayein.",
+        "reason": "Tool returned error or LLM could not find answer"
+    },
+    {
+        "timestamp": "2026-09-30T16:57:02.485486",
+        "question": "parent ka id password kaise milega",
+        "response": "Mujhe maaf kijiye, lekin parent ka ID aur password kaise milega, iski specific jankari mujhe nahi mili. Lekin aam taur par, parent ko ID aur password school ke administrative office se ya ERP system ke through diya jata hai. \n\nAap school ki administration se sampark karke is bare mein pooch sakte hain. Agar aapko aur koi madad chahiye, toh zaroor batayein!",
+        "reason": "Tool returned error or LLM could not find answer"
+    },
+    {
+        "timestamp": "2026-10-01T12:36:46.897369",
+        "question": "isi class ke girls name batao",
+        "response": "Class 3 ke girls ke naam yeh hain:\n\n1. Aarohi Patel\n2. Myra Nair\n3. Kavya Sharma\n4. Ananya Gupta\n5. Tara Verma\n6. Pooja Chauhan\n7. Riya Pillai\n8. Sana Gowda\n9. Nisha Thakur\n10. Simran Kaur",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T11:35:35.343819",
+        "question": "class 3 me duee fees or panding fees bataoo kitni hai",
+        "response": "Mujhe afsos hai, mere paas kisi specific class (jaise Class 3) ki total due/pending fees ka summary nikalne ka direct tool nahi hai. Mere paas ye options hain:\n\n1. Poore school ka fee summary de sakta hoon (total collected, total pending, kitne students pending hain).\n2. Kisi ek specific student ki fees check kar sakta hoon (agar aap kisi student ka naam bataein).\n3. Class 3 ke saare 20 students ki fees ek-ek karke check karni padegi, jisme kaafi time lagega.\n\nAap bataiye kaise proceed karein? Agar aapko poore school ka overview chahiye to main `get_school_fee_summary` call kar deta hoon.",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T12:05:48.962992",
+        "question": "Vikram Singh  ko kon si class aissgn hai",
+        "response": "Vikram Singh naam ka koi student system mein nahi mila. Kya aap spelling check kar sakte hain ya koi aur details de sakte hain?",
+        "reason": "Tool returned error or LLM could not find answer"
+    }
+]

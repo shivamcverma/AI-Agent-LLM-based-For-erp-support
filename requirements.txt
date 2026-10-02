@@ -1,0 +1,10 @@
+fastapi
+openai
+rapidfuzz
+python-dotenv
+pyspellchecker
+gunicorn
+uvicorn[standard]
+httpx
+pydantic-settings
+jinja2

@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <title>ERP AI Assistant</title>
+</head>
+
+<body>
+
+    <div class="chat-container">
+
+        <!-- Header -->
+        <div class="chat-header">
+            <div>
+                <h1>ERP AI Assistant</h1>
+                <p>School ERP Smart Assistant</p>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                Online
+            </div>
+        </div>
+
+
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+
+            <!-- Bot Welcome Message -->
+            <div class="message bot-message">
+                <div class="avatar">🤖</div>
+
+                <div class="message-content">
+                    <div class="message-name">
+                        ERP Assistant
+                    </div>
+
+                    <div class="message-text">
+                        Hello! How can I help you with the School ERP?
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Typing Indicator -->
+        <div class="typing-indicator" id="typingIndicator">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>Assistant is typing...</span>
+        </div>
+
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+
+            <textarea
+                id="messageInput"
+                placeholder="Ask something about the ERP..."
+                rows="1"
+            ></textarea>
+
+            <button id="sendButton" type="button">
+                Send
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="/static/js/chat.js"></script>
+
+</body>
+</html>
