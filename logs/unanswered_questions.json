@@ -34,5 +34,59 @@
         "question": "Vikram Singh  ko kon si class aissgn hai",
         "response": "Vikram Singh naam ka koi student system mein nahi mila. Kya aap spelling check kar sakte hain ya koi aur details de sakte hain?",
         "reason": "Tool returned error or LLM could not find answer"
+    },
+    {
+        "timestamp": "2026-10-02T15:45:45.253332",
+        "question": "class me sabhi student ke marks batao",
+        "response": "Konsi class ke sabhi students ke marks chahiye? Kripaya class naam batayein (jaise Class 3, Nursery, etc.).",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T16:10:18.566166",
+        "question": "hello",
+        "response": "Hello! Kaise madad kar sakta hoon?",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T16:11:21.749139",
+        "question": "hello tum kon ho",
+        "response": "Main ek School ERP Assistant hoon! Main aapki school ke data mein madad kar sakta hoon — jaise students ke marks, attendance, fees, teachers, classes, aur exams ke details. Bataiye, kya madad chahiye?",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T16:54:14.101147",
+        "question": "bharat ke pradhan manti kon hai",
+        "response": "Bharat ke current Pradhan Mantri Shri Narendra Modi hain.",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T17:00:09.199765",
+        "question": "hello",
+        "response": "Hello! How can I help you with your school-related queries today?",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T17:00:36.028922",
+        "question": "pm modi kon hai",
+        "response": "Narendra Modi Bharat ke current Pradhan Mantri hain.",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T17:02:41.219766",
+        "question": "narendra modi ki bhi doo",
+        "response": "मुझे खेद है, लेकिन मैं केवल स्कूल ERP से संबंधित प्रश्नों के जवाब दे सकता हूँ। मैं आपकी स्कूल के छात्रों, शिक्षकों, फीस, उपस्थिति, अंकों और स्कूल प्रबंधन के बारे में मदद कर सकता हूँ।\n\nअगर आपके पास स्कूल से संबंधित कोई प्रश्न है, तो कृपया पूछें।",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T17:38:18.627516",
+        "question": "who are you",
+        "response": "Hello! I am your School ERP Assistant. I am here to help you with school-related queries like student details, fee status, attendance, exam marks, teacher assignments, and other school management tasks. How can I help you today?",
+        "reason": "No tool was called by LLM"
+    },
+    {
+        "timestamp": "2026-10-02T17:40:30.845359",
+        "question": "whos prime mister of india",
+        "response": "I am a School ERP assistant and can only help with school-related queries such as students, teachers, fees, attendance, and marks. I cannot answer general knowledge questions like who the Prime Minister of India is. If you have any questions about the school, please feel free to ask!",
+        "reason": "No tool was called by LLM"
     }
 ]

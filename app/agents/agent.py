@@ -1,6 +1,7 @@
 from openai import OpenAI
 import json
 import os
+import asyncio
 from datetime import datetime
 
 def log_unanswered_question(question: str, response: str, reason: str):
@@ -46,8 +47,11 @@ from app.tools.fees_tools import (
 class ERPAgent:
     def __init__(self):
         self.client = OpenAI(
-            api_key=settings.openrouter_api_key,
-            base_url="https://openrouter.ai/api/v1"
+            # api_key=settings.openrouter_api_key,
+            # base_url="https://openrouter.ai/api/v1"
+
+            api_key=os.environ.get("GROQ_API_KEY", settings.openrouter_api_key),
+            base_url="https://api.groq.com/openai/v1"  
         )
  
         self.knowledge_base = KnowledgeBase()
@@ -188,14 +192,13 @@ class ERPAgent:
                         "properties": {
                             "search": {
                                 "type": "string",
-                                "description": "Student name."
+                                "description": "Student name (optional if class_name is provided)."
                             },
                             "class_name": {
                                 "type": "string",
-                                "description": "Optional class name."
+                                "description": "Class name to fetch marks for the whole class, or narrow down search (optional)."
                             }
-                        },
-                        "required": ["search"]
+                        }
                     }
                 }
             },
@@ -209,18 +212,18 @@ class ERPAgent:
                         "properties": {
                             "search": {
                                 "type": "string",
-                                "description": "Student name."
+                                "description": "Student name (optional if class_name is provided)."
                             },
                             "class_name": {
                                 "type": "string",
-                                "description": "Optional class name."
+                                "description": "Class name to fetch marks for the whole class, or narrow down search (optional)."
                             },
                             "exam_id": {
                                 "type": "integer",
                                 "description": "The ID of the exam (you can get this from get_student_marks or get_exams)."
                             }
                         },
-                        "required": ["search", "exam_id"]
+                        "required": ["exam_id"]
                     }
                 }
             },
@@ -359,11 +362,10 @@ class ERPAgent:
                 return {"error": "Please provide a student name or a class name."}
             
             async def get_fees_for_students(students_list):
-                results = []
-                for s in students_list:
+                async def fetch_fee(s):
                     fee_res = await get_student_fee(school_id, s["id"])
-                    results.append({"student": s, "fee": fee_res})
-                return results
+                    return {"student": s, "fee": fee_res}
+                return list(await asyncio.gather(*(fetch_fee(s) for s in students_list)))
 
             if search:
                 result = await find_student(school_id, search)
@@ -417,52 +419,72 @@ class ERPAgent:
                 if not students:
                     return {"error": f"No student named '{search}' found in class '{class_name}'."}
                 
-                results = []
-                for s in students:
+                async def fetch_att(s):
                     att = await get_attendance_summary(school_id, date=date, student_id=s["id"], from_date=from_date, to_date=to_date)
-                    results.append({"student": s, "attendance": att})
-                return results
+                    return {"student": s, "attendance": att}
+                results = await asyncio.gather(*(fetch_att(s) for s in students))
+                return list(results)
             else:
                 return await get_attendance_summary(school_id, date=date, class_id=class_id, from_date=from_date, to_date=to_date)
 
         elif func_name == "get_student_marks":
             from app.tools.marks_tools import get_student_marks
             search = args.get("search")
-            result = await find_student(school_id, search)
-            if result.get("status") == "not_found":
-                return {"error": f"No student named '{search}' found."}
+            if not search and not class_id:
+                return {"error": "Please provide a student name or a class name."}
             
-            students = [result["student"]] if result.get("status") == "success" else result["students"]
-            if class_id:
-                students = [s for s in students if s.get("class_id") == class_id]
-            if not students:
-                return {"error": f"No student named '{search}' found in class '{class_name}'."}
+            if search:
+                result = await find_student(school_id, search)
+                if result.get("status") == "not_found":
+                    return {"error": f"No student named '{search}' found."}
+                
+                students = [result["student"]] if result.get("status") == "success" else result["students"]
+                if class_id:
+                    students = [s for s in students if s.get("class_id") == class_id]
+                if not students:
+                    return {"error": f"No student named '{search}' found in class '{class_name}'."}
+            else:
+                result = await get_student_list(school_id, class_id=class_id)
+                if result.get("status") == "success":
+                    students = result.get("data", {}).get("students", [])
+                else:
+                    return {"error": "Could not fetch students for the class."}
             
-            results = []
-            for s in students:
+            async def fetch_marks(s):
                 marks = await get_student_marks(school_id, s["id"])
-                results.append({"student": s, "marks": marks})
-            return results
+                return {"student": s, "marks": marks}
+            results = await asyncio.gather(*(fetch_marks(s) for s in students))
+            return list(results)
 
         elif func_name == "get_student_subject_marks":
             from app.tools.marks_tools import get_student_subject_marks
             search = args.get("search")
             exam_id = args.get("exam_id")
-            result = await find_student(school_id, search)
-            if result.get("status") == "not_found":
-                return {"error": f"No student named '{search}' found."}
+            if not search and not class_id:
+                return {"error": "Please provide a student name or a class name."}
             
-            students = [result["student"]] if result.get("status") == "success" else result["students"]
-            if class_id:
-                students = [s for s in students if s.get("class_id") == class_id]
-            if not students:
-                return {"error": f"No student named '{search}' found in class '{class_name}'."}
+            if search:
+                result = await find_student(school_id, search)
+                if result.get("status") == "not_found":
+                    return {"error": f"No student named '{search}' found."}
+                
+                students = [result["student"]] if result.get("status") == "success" else result["students"]
+                if class_id:
+                    students = [s for s in students if s.get("class_id") == class_id]
+                if not students:
+                    return {"error": f"No student named '{search}' found in class '{class_name}'."}
+            else:
+                result = await get_student_list(school_id, class_id=class_id)
+                if result.get("status") == "success":
+                    students = result.get("data", {}).get("students", [])
+                else:
+                    return {"error": "Could not fetch students for the class."}
             
-            results = []
-            for s in students:
+            async def fetch_subject_marks(s):
                 marks = await get_student_subject_marks(school_id, s["id"], exam_id)
-                results.append({"student": s, "subject_marks": marks})
-            return results
+                return {"student": s, "subject_marks": marks}
+            results = await asyncio.gather(*(fetch_subject_marks(s) for s in students))
+            return list(results)
 
         elif func_name == "get_staff_summary":
             from app.tools.staff_tools import get_staff_summary
@@ -505,34 +527,45 @@ class ERPAgent:
 Your primary role is to answer user queries accurately by calling the appropriate ERP tools.
 Rules:
 1. Always use tools to fetch data. Never guess student details or fee amounts.
-2. The user might ask follow-up questions. Use your conversational memory to infer context (like which class or student they are talking about).
-3. If a tool returns multiple students (e.g. 2 students named "Yash Singh"), you can provide details for all of them! Do not simply ask for the class if you can just print their details.
+2. The user might ask follow-up questions. Use your conversational memory to infer context.
+3. If a tool returns multiple students, provide details for all of them!
 4. If a tool returns an error or says "not found", politely inform the user.
-5. Provide your final answer in conversational Hindi (written in English script), Hinglish, or English as appropriate to the user's language. Keep answers natural, polite, and to the point.
-6. If the user asks about fees, state amounts clearly (e.g. '₹5000').
+5. Provide your final answer in conversational Hindi (written in English script), Hinglish, or English as appropriate. Keep answers natural, polite, and to the point.
+6. If the user asks about fees, state amounts clearly.
 7. DO NOT use markdown formatting like bold (**text**) or italics (*text*) in your response. Keep it completely plain text without any stars (*).
-8. Differentiate between students and teachers based on context. If a user asks which class a person is "assigned" to (e.g. "X ko kon si class assign hai"), they mean a teacher, so use get_teacher_assignments."""
+8. Differentiate between students and teachers based on context. If a user asks which class a person is "assigned" to, they mean a teacher, so use get_teacher_assignments.
+9. CRITICAL RESTRICTION: You MUST ONLY answer questions related to the School ERP (students, teachers, fees, attendance, marks, school management). If a user asks a general knowledge question, a coding question, or ANY question not related to the ERP system (e.g., 'Who is the PM of India?'), you MUST politely refuse to answer and state that you are a School ERP assistant and can only help with school-related queries."""
 
         messages = [{"role": "system", "content": system_prompt}]
         for msg in conversation_history[-10:]:
             if msg.get("role") in ["user", "assistant"]:
                 messages.append({"role": msg["role"], "content": msg["content"]})
         
-        messages.append({"role": "user", "content": message})
+        strict_user_message = f"{message}\n\n[SYSTEM REMINDER: If the user's query above is about general knowledge (like politics, weather, math) or ANYTHING not related to this School ERP, you MUST refuse to answer.]"
+        messages.append({"role": "user", "content": strict_user_message})
 
-        print("CALLING LLM WITH TOOLS...")
-        response = self.client.chat.completions.create(
-            model="openrouter/free",
-            messages=messages,
-            tools=self.get_tools(),
-            tool_choice="auto",
-            temperature=0.3
-        )
-
-        message_obj = response.choices[0].message
+        MAX_ITERATIONS = 5
+        iteration = 0
+        all_tool_results = []
+        final_content = ""
         
-        if message_obj.tool_calls:
-            # Add assistant message with tool calls to history
+        while iteration < MAX_ITERATIONS:
+            print(f"CALLING LLM WITH TOOLS (Iteration {iteration})...")
+            response = self.client.chat.completions.create(
+                # model="openrouter/free",
+                model="qwen/qwen3.8-27b",
+                messages=messages,
+                tools=self.get_tools(),
+                tool_choice="auto",
+                temperature=0.3
+            )
+            
+            message_obj = response.choices[0].message
+            
+            if not message_obj.tool_calls:
+                final_content = message_obj.content or ""
+                break
+                
             assistant_message = {
                 "role": "assistant",
                 "content": message_obj.content,
@@ -549,11 +582,9 @@ Rules:
             }
             messages.append(assistant_message)
             
-            # Execute tools
             with open("debug_log.txt", "a") as f:
-                f.write(f"\n\n--- NEW REQUEST ---\n")
+                f.write(f"\n\n--- NEW REQUEST (Iter {iteration}) ---\n")
             
-            tool_results_list = []
             for tool_call in message_obj.tool_calls:
                 func_name = tool_call.function.name
                 args = json.loads(tool_call.function.arguments)
@@ -564,7 +595,7 @@ Rules:
                 except Exception as e:
                     result_json = {"error": str(e)}
                 
-                tool_results_list.append(result_json)
+                all_tool_results.append(result_json)
                 
                 print(f"TOOL RESULT ({func_name}):", result_json)
                 with open("debug_log.txt", "a") as f:
@@ -576,11 +607,14 @@ Rules:
                     "name": func_name,
                     "content": json.dumps(result_json, default=str)
                 })
-            
-            print("CALLING LLM FOR FINAL RESPONSE...")
+                
+            iteration += 1
+
+        if iteration >= MAX_ITERATIONS:
+            print("CALLING LLM FOR FINAL RESPONSE (Max iterations reached)...")
             messages.append({
                 "role": "system",
-                "content": "You have all the required information. Do not output any <tool_call> tags. Provide the final answer in natural language to the user."
+                "content": "You have reached the maximum number of tool calls. Do not output any <tool_call> tags. Provide the final answer in natural language to the user based on the info you have."
             })
             final_response = self.client.chat.completions.create(
                 model="openrouter/free",
@@ -589,58 +623,37 @@ Rules:
             )
             final_content = final_response.choices[0].message.content or ""
             
-            final_content = final_content.replace('*', '')
-            
-            print(f"\n{'='*50}\n[LLM RESPONSE]:\n{final_content}\n{'='*50}\n")
-            
-            # Check for errors in tool results to log unanswered queries
-            has_error = False
-            for r in tool_results_list:
-                if isinstance(r, dict):
-                    if "error" in r or r.get("status") == "not_found" or "message" in r:
+        final_content = final_content.replace('*', '')
+        print(f"\n{'='*50}\n[LLM RESPONSE]:\n{final_content}\n{'='*50}\n")
+        
+        has_error = False
+        for r in all_tool_results:
+            if isinstance(r, dict):
+                if "error" in r or r.get("status") == "not_found" or "message" in r:
+                    has_error = True
+            elif isinstance(r, list):
+                for item in r:
+                    if isinstance(item, dict) and ("error" in item or item.get("status") == "not_found"):
                         has_error = True
-                elif isinstance(r, list):
-                    for item in r:
-                        if isinstance(item, dict) and ("error" in item or item.get("status") == "not_found"):
-                            has_error = True
+                        
+        lower_content = final_content.lower()
+        failure_keywords = [
+            "maaf kijiye", "nahi mil raha", "nahi mila", "nahi mil rahe",
+            "nahi mil rahi", "not found", "unable to find"
+        ]
+        if not has_error:
+            for kw in failure_keywords:
+                if kw in lower_content:
+                    has_error = True
+                    break
+                    
+        if has_error or iteration == 0:
+            reason = "No tool was called by LLM" if iteration == 0 and not has_error else "Tool returned error or LLM could not find answer"
+            log_unanswered_question(message, final_content, reason)
             
-            # Also check if the LLM explicitly stated it couldn't find the answer
-            lower_content = final_content.lower()
-            failure_keywords = [
-                "maaf kijiye", 
-                "nahi mil raha", 
-                "nahi mila", 
-                "nahi mil rahe",
-                "nahi mil rahi",
-                "not found", 
-                "unable to find"
-            ]
-            if not has_error:
-                for kw in failure_keywords:
-                    if kw in lower_content:
-                        has_error = True
-                        break
-            
-            if has_error:
-                log_unanswered_question(message, final_content, "Tool returned error or LLM could not find answer")
-            
-            return {
-                "success": True,
-                "intent": "llm_agent",
-                "response": final_content,
-                "data": []
-            }
-        else:
-            final_content = message_obj.content or ""
-            final_content = final_content.replace('*', '')
-            print(f"\n{'='*50}\n[LLM RESPONSE]:\n{final_content}\n{'='*50}\n")
-            
-            # If no tools were called, it might be an unanswerable query (or general chat)
-            log_unanswered_question(message, final_content, "No tool was called by LLM")
-            
-            return {
-                "success": True,
-                "intent": "llm_agent",
-                "response": final_content,
-                "data": []
-            }
+        return {
+            "success": True,
+            "intent": "llm_agent",
+            "response": final_content,
+            "data": []
+        }

@@ -1993,5 +1993,159 @@
         "intent": "llm_agent",
         "confidence": 0,
         "bot_response": "Total 6 teachers hain. (1 Senior Teacher aur 5 Staff ke roop mein)"
+    },
+    {
+        "timestamp": "2026-10-02T15:45:45.256239",
+        "user_message": "class me sabhi student ke marks batao",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Konsi class ke sabhi students ke marks chahiye? Kripaya class naam batayein (jaise Class 3, Nursery, etc.)."
+    },
+    {
+        "timestamp": "2026-10-02T15:46:41.229247",
+        "user_message": "class 1",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "<tool_call>\n<function=get_student_marks>\n<parameter=class_name>\nClass 1\n</parameter>\n</function>\n</tool_call>\n"
+    },
+    {
+        "timestamp": "2026-10-02T15:51:32.354700",
+        "user_message": "class 1 me sabhi student ke marks batao",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "<tool_call>get_students\n<arg_key>class_name</arg_key>\n<arg_value>Class 1</arg_value>\n</tool_call>"
+    },
+    {
+        "timestamp": "2026-10-02T15:54:30.456839",
+        "user_message": "class 1 me sabhi student ke marks batao",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Class 1 ke sabhi students ke marks (Term 1) niche diye gaye hain:\n\nRishi Khatri: Term 1 - 0/0 (0%) - Grade D - Pass\nZoya Rana: Term 1 - 0/0 (0%) - Grade D - Pass\nRohan Pandey: Term 1 - 0/0 (0%) - Grade D - Pass\nPriya Malhotra: Term 1 - 0/0 (0%) - Grade D - Pass\nRudra Chauhan: Term 1 - 0/0 (0%) - Grade D - Pass\nSneha Bhatia: Term 1 - 0/0 (0%) - Grade D - Pass\nSai Pillai: Term 1 - 0/0 (0%) - Grade D - Pass\nRuchi Thakur: Term 1 - 0/0 (0%) - Grade D - Pass\nSamarth Gowda: Term 1 - 0/0 (0%) - Grade D - Pass\nSwati Mishra: Term 1 - 0/0 (0%) - Grade D - Pass\nShlok Verma: Term 1 - 0/0 (0%) - Grade D - Pass\nAvni Patel: Term 1 - 0/0 (0%) - Grade D - Pass\nChhavi Desai: Term 1 - 0/0 (0%) - Grade D - Pass\nZain Khan: Term 1 - 0/0 (0%) - Grade D - Pass\nDisha Rao: Term 1 - 0/0 (0%) - Grade D - Pass\nAli Bansal: Term 1 - 0/0 (0%) - Grade D - Pass\nEva Jain: Term 1 - 0/0 (0%) - Grade D - Pass\nOmar Chouhan: Term 1 - 0/0 (0%) - Grade D - Pass\nFatima Tiwari: Term 1 - 0/0 (0%) - Grade D - Pass\n\nSabhi students ke marks abhi tak enter nahi hue hain, isliye obtained marks 0 hain."
+    },
+    {
+        "timestamp": "2026-10-02T16:05:53.049006",
+        "user_message": "class 1 me sabhi student ke marks batao",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Class 1 ke sabhi students ke marks (Term 1) yeh hain:\n\nRishi Khatri: Term 1 - 0/0 (0%) - Grade D - Pass\nZoya Rana: Term 1 - 0/0 (0%) - Grade D - Pass\nRohan Pandey: Term 1 - 0/0 (0%) - Grade D - Pass\nPriya Malhotra: Term 1 - 0/0 (0%) - Grade D - Pass\nRudra Chauhan: Term 1 - 0/0 (0%) - Grade D - Pass\nSneha Bhatia: Term 1 - 0/0 (0%) - Grade D - Pass\nSai Pillai: Term 1 - 0/0 (0%) - Grade D - Pass\nRuchi Thakur: Term 1 - 0/0 (0%) - Grade D - Pass\nSamarth Gowda: Term 1 - 0/0 (0%) - Grade D - Pass\nSwati Mishra: Term 1 - 0/0 (0%) - Grade D - Pass\nShlok Verma: Term 1 - 0/0 (0%) - Grade D - Pass\nAvni Patel: Term 1 - 0/0 (0%) - Grade D - Pass\nChhavi Desai: Term 1 - 0/0 (0%) - Grade D - Pass\nZain Khan: Term 1 - 0/0 (0%) - Grade D - Pass\nDisha Rao: Term 1 - 0/0 (0%) - Grade D - Pass\nAli Bansal: Term 1 - 0/0 (0%) - Grade D - Pass\nEva Jain: Term 1 - 0/0 (0%) - Grade D - Pass\nOmar Chouhan: Term 1 - 0/0 (0%) - Grade D - Pass\nFatima Tiwari: Term 1 - 0/0 (0%) - Grade D - Pass\n\nSabhi students ke marks abhi tak enter nahi hue hain, isliye obtained marks 0 hain."
+    },
+    {
+        "timestamp": "2026-10-02T16:06:39.502834",
+        "user_message": "class 3 me sabhi student ke marks batao",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Class 3 ke sabhi students ke marks (Term 1) niche diye gaye hain:\n\nAnsh Bose: Term 1 - 0/0 (0%) - Grade D - Pass\nNeha Sheikh: Term 1 - 0/0 (0%) - Grade D - Pass\nIshaan Khatri: Term 1 - 0/0 (0%) - Grade D - Pass\nNitya Rana: Term 1 - 0/0 (0%) - Grade D - Pass\nShaurya Pandey: Term 1 - 0/0 (0%) - Grade D - Pass\nPari Malhotra: Term 1 - 0/0 (0%) - Grade D - Pass\nAtharv Chauhan: Term 1 - 0/0 (0%) - Grade D - Pass\nPihu Bhatia: Term 1 - 0/0 (0%) - Grade D - Pass\nKrish Pillai: Term 1 - 0/0 (0%) - Grade D - Pass\nPrisha Thakur: Term 1 - 0/0 (0%) - Grade D - Pass\nAaryan Gowda: Term 1 - 0/0 (0%) - Grade D - Pass\nRiya Mishra: Term 1 - 0/0 (0%) - Grade D - Pass\nDarsh Verma: Term 1 - 0/0 (0%) - Grade D - Pass\nSaanvi Patel: Term 1 - 0/0 (0%) - Grade D - Pass\nDaksh Singh: Term 1 - 0/0 (0%) - Grade D - Pass\nSamaira Desai: Term 1 - 0/0 (0%) - Grade D - Pass\nDev Khan: Term 1 - 0/0 (0%) - Grade D - Pass\nSara Rao: Term 1 - 0/0 (0%) - Grade D - Pass\nDhruv Bansal: Term 1 - 0/0 (0%) - Grade D - Pass\nShanaya Jain: Term 1 - 0/0 (0%) - Grade D - Pass\n\nSabhi students ke marks abhi tak enter nahi hue hain, isliye obtained marks 0 hain."
+    },
+    {
+        "timestamp": "2026-10-02T16:10:04.779935",
+        "user_message": "class 2 me sabhi student ke marks batao",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Class 2 ke sabhi students ke marks (Term 1) niche diye gaye hain:\n\n1. Yash Singh - Term 1: 0/0 (0%) - Grade D - Pass\n2. Yug Nair - Term 1: 0/0 (0%) - Grade D - Pass\n3. Gauri Rajput - Term 1: 0/0 (0%) - Grade D - Pass\n4. Amit Agarwal - Term 1: 0/0 (0%) - Grade D - Pass\n5. Hazel Iyer - Term 1: 0/0 (0%) - Grade D - Pass\n6. Sumit Mehta - Term 1: 0/0 (0%) - Grade D - Pass\n7. Ishita Das - Term 1: 0/0 (0%) - Grade D - Pass\n8. Ravi Shukla - Term 1: 0/0 (0%) - Grade D - Pass\n9. Jiya Bhatt - Term 1: 0/0 (0%) - Grade D - Pass\n10. Aarav Chaudhary - Term 1: 0/0 (0%) - Grade D - Pass\n11. Kavya Ali - Term 1: 0/0 (0%) - Grade D - Pass\n12. Vihaan Saxena - Term 1: 0/0 (0%) - Grade D - Pass\n13. Kiara Kapoor - Term 1: 0/0 (0%) - Grade D - Pass\n14. Vivaan Prakash - Term 1: 0/0 (0%) - Grade D - Pass\n15. Kriti Garg - Term 1: 0/0 (0%) - Grade D - Pass\n16. Ananya Kaur - Term 1: 0/0 (0%) - Grade D - Pass\n17. Diya Nath - Term 1: 0/0 (0%) - Grade D - Pass\n18. Advik Jha - Term 1: 0/0 (0%) - Grade D - Pass\n19. Myra Menon - Term 1: 0/0 (0%) - Grade D - Pass\n20. Kabir Dubey - Term 1: 0/0 (0%) - Grade D - Pass\n21. Navya Sinha - Term 1: 0/0 (0%) - Grade D - Pass\n\nSabhi students ke marks abhi tak enter nahi hue hain, isliye obtained marks 0 hain."
+    },
+    {
+        "timestamp": "2026-10-02T16:10:18.579056",
+        "user_message": "hello",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Hello! Kaise madad kar sakta hoon?"
+    },
+    {
+        "timestamp": "2026-10-02T16:11:21.761709",
+        "user_message": "hello tum kon ho",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Main ek School ERP Assistant hoon! Main aapki school ke data mein madad kar sakta hoon — jaise students ke marks, attendance, fees, teachers, classes, aur exams ke details. Bataiye, kya madad chahiye?"
+    },
+    {
+        "timestamp": "2026-10-02T16:11:54.010176",
+        "user_message": "class 5 ke sabhi student name batao",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Class 5 ke sabhi 20 students ke naam yeh hain:\n\n1. Pranav Agarwal\n2. Navya Iyer\n3. Laksh Mehta\n4. Srishti Das\n5. Dev Shukla\n6. Pari Bhatt\n7. Samarth Chaudhary\n8. Zara Ali\n9. Krish Saxena\n10. Aditi Kapoor\n11. Rudra Prakash\n12. Priya Garg\n13. Yash Kaur\n14. Sneha Nath\n15. Om Jha\n16. Disha Menon\n17. Shlok Dubey\n18. Eva Sinha\n19. Ali Bose\n20. Fatima Sheikh\n\nSab students Class V, Section A mein hain."
+    },
+    {
+        "timestamp": "2026-10-02T16:50:36.311207",
+        "user_message": "class 2 ke student ke father or mother name batao",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Class 2 ke 21 students ke father aur mother names yeh hain:\n\n1. Yash Singh - Father: Harpreet Singh, Mother: Simran Kaur\n2. Yug Nair - Father: Rahul Nair, Mother: Divya Nair\n3. Gauri Rajput - Father: Vijay Rajput, Mother: Rekha Rajput\n4. Amit Agarwal - Father: Mohit Agarwal, Mother: Sonali Agarwal\n5. Hazel Iyer - Father: Karthik Iyer, Mother: Ananya Iyer\n6. Sumit Mehta - Father: Chetan Mehta, Mother: Bhavna Mehta\n7. Ishita Das - Father: Subhash Das, Mother: Mitali Das\n8. Ravi Shukla - Father: Ravi Shukla, Mother: Pooja Shukla\n9. Jiya Bhatt - Father: Ashish Bhatt, Mother: Neha Bhatt\n10. Aarav Chaudhary - Father: Dinesh Chaudhary, Mother: Suman Chaudhary\n11. Kavya Ali - Father: Imran Ali, Mother: Fatima Ali\n12. Vihaan Saxena - Father: Prateek Saxena, Mother: Richa Saxena\n13. Kiara Kapoor - Father: Aman Kapoor, Mother: Nisha Kapoor\n14. Vivaan Prakash - Father: Surya Prakash, Mother: Lata Prakash\n15. Kriti Garg - Father: Gaurav Garg, Mother: Swati Garg\n16. Ananya Kaur - Father: Manjeet Kaur, Mother: Jaspreet Kaur\n17. Diya Nath - Father: Alok Nath, Mother: Bina Nath\n18. Advik Jha - Father: Manoj Jha, Mother: Kiran Jha\n19. Myra Menon - Father: Suresh Menon, Mother: Asha Menon\n20. Kabir Dubey - Father: Pramod Dubey, Mother: Seema Dubey\n21. Navya Sinha - Father: Rohit Sinha, Mother: Priya Sinha\n\nYeh Class 2 ke sabhi 21 students ke bachon ki family details hain. Har student ka apna father aur mother naam diya gaya hai."
+    },
+    {
+        "timestamp": "2026-10-02T16:53:28.616377",
+        "user_message": "dob bhi btaa do inki",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Class 2 ke sabhi 21 students ki date of birth yeh hai:\n\n1. Yash Singh - 30 April 2019\n2. Yug Nair - 10 April 2018\n3. Gauri Rajput - 15 May 2018\n4. Amit Agarwal - 20 June 2018\n5. Hazel Iyer - 25 July 2018\n6. Sumit Mehta - 30 August 2018\n7. Ishita Das - 12 September 2018\n8. Ravi Shukla - 18 October 2018\n9. Jiya Bhatt - 22 November 2018\n10. Aarav Chaudhary - 5 December 2018\n11. Kavya Ali - 10 January 2019\n12. Vihaan Saxena - 14 February 2018\n13. Kiara Kapoor - 25 March 2018\n14. Vivaan Prakash - 30 April 2018\n15. Kriti Garg - 18 May 2018\n16. Ananya Kaur - 22 June 2018\n17. Diya Nath - 11 July 2018\n18. Advik Jha - 19 August 2018\n19. Myra Menon - 8 September 2018\n20. Kabir Dubey - 27 October 2018\n21. Navya Sinha - 14 November 2018\n\nYeh Class 2, Section A ke sabhi students ki complete date of birth details hain."
+    },
+    {
+        "timestamp": "2026-10-02T16:54:14.109698",
+        "user_message": "bharat ke pradhan manti kon hai",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Bharat ke current Pradhan Mantri Shri Narendra Modi hain."
+    },
+    {
+        "timestamp": "2026-10-02T16:59:51.806072",
+        "user_message": "mujhe exam details do",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "School ke liye exam details yeh hain:\n\nSession: 2026-2027\n\nExams:\n\n1. Term 1 (ID: 1)\n   - Start Date: 1 February 2026\n   - End Date: 26 February 2026\n\n2. Term 2 (ID: 2)\n   - Start Date: 1 February 2026\n   - End Date: 26 February 2026\n\n3. Term 3 (ID: 3)\n   - Start Date: 1 February 2026\n   - End Date: 26 February 2026\n\n4. Term 4 (ID: 4)\n   - Start Date: 1 February 2026\n   - End Date: 26 February 2026\n\nHar exam ka duration 26 days ka hai, jo February month mein hoga. Agar aap kisi specific class ya student ke marks dekhna chahte hain, toh batayen!"
+    },
+    {
+        "timestamp": "2026-10-02T17:00:09.207641",
+        "user_message": "hello",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Hello! How can I help you with your school-related queries today?"
+    },
+    {
+        "timestamp": "2026-10-02T17:00:36.037673",
+        "user_message": "pm modi kon hai",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Narendra Modi Bharat ke current Pradhan Mantri hain."
+    },
+    {
+        "timestamp": "2026-10-02T17:02:16.695350",
+        "user_message": "Amit Agarwal  ki details do",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Amit Agarwal ki details yeh hain:\n\n- Name: Amit Agarwal\n- Admission No: YISADM-063\n- Roll Number: 3\n- Gender: Male\n- Date of Birth: 20 June 2018\n- Father's Name: Mohit Agarwal\n- Mother's Name: Sonali Agarwal\n- Phone: Not available\n- Class: Class II\n- Section: A\n\nYeh sabhi details Amit Agarwal ki hain. Agar aap kisi aur information ke liye poochna chahte hain toh batayein!"
+    },
+    {
+        "timestamp": "2026-10-02T17:02:41.228531",
+        "user_message": "narendra modi ki bhi doo",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "मुझे खेद है, लेकिन मैं केवल स्कूल ERP से संबंधित प्रश्नों के जवाब दे सकता हूँ। मैं आपकी स्कूल के छात्रों, शिक्षकों, फीस, उपस्थिति, अंकों और स्कूल प्रबंधन के बारे में मदद कर सकता हूँ।\n\nअगर आपके पास स्कूल से संबंधित कोई प्रश्न है, तो कृपया पूछें।"
+    },
+    {
+        "timestamp": "2026-10-02T17:03:09.562184",
+        "user_message": "amit ki do",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Amit Agarwal ki details yeh hain:\n\n- Name: Amit Agarwal\n- Admission No: YISADM-063\n- Roll Number: 3\n- Gender: Male\n- Date of Birth: 20 June 2018\n- Father's Name: Mohit Agarwal\n- Mother's Name: Sonali Agarwal\n- Phone: Not available\n- Class: Class II\n- Section: A\n\nAgar aap Amit ki fees, attendance, marks ya koi aur specific information chahte hain, toh batayein!"
+    },
+    {
+        "timestamp": "2026-10-02T17:38:18.666138",
+        "user_message": "who are you",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Hello! I am your School ERP Assistant. I am here to help you with school-related queries like student details, fee status, attendance, exam marks, teacher assignments, and other school management tasks. How can I help you today?"
+    },
+    {
+        "timestamp": "2026-10-02T17:38:34.117936",
+        "user_message": "class 2 ki details do",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "Class 2 (Section A) ki details yeh hain:\n\nTotal Students: 21\n\nStudent List:\n1. Yug Nair (Roll 1) - Male\n2. Gauri Rajput (Roll 2) - Female\n3. Amit Agarwal (Roll 3) - Male\n4. Hazel Iyer (Roll 4) - Female\n5. Sumit Mehta (Roll 5) - Male\n6. Ishita Das (Roll 6) - Female\n7. Ravi Shukla (Roll 7) - Male\n8. Jiya Bhatt (Roll 8) - Female\n9. Aarav Chaudhary (Roll 9) - Male\n10. Kavya Ali (Roll 10) - Female\n11. Vihaan Saxena (Roll 11) - Male\n12. Kiara Kapoor (Roll 12) - Female\n13. Yash Singh (Roll 13) - Male\n14. Vivaan Prakash (Roll 13) - Male\n15. Kriti Garg (Roll 14) - Female\n16. Ananya Kaur (Roll 15) - Female\n17. Diya Nath (Roll 16) - Female\n18. Advik Jha (Roll 17) - Male\n19. Myra Menon (Roll 18) - Female\n20. Kabir Dubey (Roll 19) - Male\n21. Navya Sinha (Roll 20) - Female\n\nAgar aapko kisi specific student ki fees, attendance, ya marks ki details chahiye, toh bataiye!"
+    },
+    {
+        "timestamp": "2026-10-02T17:40:30.852001",
+        "user_message": "whos prime mister of india",
+        "intent": "llm_agent",
+        "confidence": 0,
+        "bot_response": "I am a School ERP assistant and can only help with school-related queries such as students, teachers, fees, attendance, and marks. I cannot answer general knowledge questions like who the Prime Minister of India is. If you have any questions about the school, please feel free to ask!"
     }
 ]

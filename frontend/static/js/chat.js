@@ -459,13 +459,28 @@ function addMessage(
         "message-text"
     );
 
-    text.textContent = message;
-
-
     content.appendChild(name);
-
     content.appendChild(text);
 
+    if (sender === "bot" && save === true) {
+        text.textContent = "";
+        let i = 0;
+        const typingSpeed = 20; // 20 milliseconds per character for better visibility
+
+        function typeWriter() {
+            if (i < message.length) {
+                text.textContent += message.charAt(i);
+                i++;
+                chatMessages.scrollTo({
+                    top: chatMessages.scrollHeight
+                });
+                setTimeout(typeWriter, typingSpeed);
+            }
+        }
+        typeWriter();
+    } else {
+        text.textContent = message;
+    }
 
     // ======================================
     // SHOW STEPS
