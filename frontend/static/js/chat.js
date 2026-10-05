@@ -765,3 +765,33 @@ function getConversationHistory() {
         }
     );
 }
+
+
+// ==========================================
+// THEME TOGGLE LOGIC
+// ==========================================
+
+const themeToggle = document.getElementById("themeToggle");
+const THEME_STORAGE_KEY = "erp_chat_theme";
+
+// Load theme on startup
+const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || "light";
+if (savedTheme === "dark") {
+    document.body.setAttribute("data-theme", "dark");
+    if(themeToggle) themeToggle.textContent = "☀️";
+}
+
+if(themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        const isDark = document.body.getAttribute("data-theme") === "dark";
+        if (isDark) {
+            document.body.removeAttribute("data-theme");
+            themeToggle.textContent = "🌙";
+            localStorage.setItem(THEME_STORAGE_KEY, "light");
+        } else {
+            document.body.setAttribute("data-theme", "dark");
+            themeToggle.textContent = "☀️";
+            localStorage.setItem(THEME_STORAGE_KEY, "dark");
+        }
+    });
+}
